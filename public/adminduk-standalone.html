@@ -1,0 +1,100 @@
+<!-- Please refer to /src/standaloneHtmlSource.ts for standalone content -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistem Pendaftaran Online Adminduk (Standalone HTML)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    @media print {
+      body * { visibility: hidden; }
+      #printable-receipt, #printable-receipt * { visibility: visible; }
+      #printable-receipt { position: absolute; left: 0; top: 0; width: 100%; }
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
+  <div class="bg-blue-950 text-blue-200 text-xs px-4 py-1.5 border-b border-blue-900">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="font-medium">PORTAL RESMI LAYANAN DUKCAPIL ONLINE MANDIRI</span>
+      </div>
+      <div class="hidden sm:flex items-center gap-4 text-slate-300">
+        <span>Call Center: 1500537</span>
+      </div>
+    </div>
+  </div>
+  <header class="bg-slate-900 text-white sticky top-0 z-40 shadow-md border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center font-bold text-white shadow-inner">
+          🏛️
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold tracking-tight">SI-ADMINDUK ONLINE</h1>
+          <p class="text-xs text-slate-400">Dinas Kependudukan dan Pencatatan Sipil</p>
+        </div>
+      </div>
+      <div class="bg-slate-950 p-1 rounded-xl border border-slate-800 flex items-center">
+        <button id="btn-role-user" onclick="switchRole('USER')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-blue-600 text-white shadow">
+          👤 Login sebagai User (Masyarakat)
+        </button>
+        <button id="btn-role-admin" onclick="switchRole('ADMIN')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white">
+          🛡️ Login sebagai Admin (Petugas)
+        </button>
+      </div>
+    </div>
+  </header>
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full">
+    <div id="view-user" class="space-y-6">
+      <div class="bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 rounded-2xl p-6 sm:p-8 text-white shadow-lg">
+        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2">Pendaftaran Adminduk Online</h2>
+        <p class="text-blue-100 text-xs sm:text-sm max-w-2xl">
+          Ajukan permohonan KTP-el, Kartu Keluarga, dan Akta Kelahiran secara mandiri dan cepat.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+          <span class="text-xs font-medium text-slate-500 block">Total Pengajuan</span>
+          <span id="stat-user-total" class="text-2xl font-bold text-slate-900">4</span>
+        </div>
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+          <span class="text-xs font-medium text-amber-600 block">Sedang Diproses</span>
+          <span id="stat-user-diproses" class="text-2xl font-bold text-amber-600">2</span>
+        </div>
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+          <span class="text-xs font-medium text-emerald-600 block">Telah Disetujui</span>
+          <span id="stat-user-disetujui" class="text-2xl font-bold text-emerald-600">1</span>
+        </div>
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+          <span class="text-xs font-medium text-rose-600 block">Ditolak / Perlu Revisi</span>
+          <span id="stat-user-ditolak" class="text-2xl font-bold text-rose-600">1</span>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-200 p-6">
+        <h3 class="font-bold text-base mb-4">Pengajuan Layanan Cepat</h3>
+        <p class="text-xs text-slate-500 mb-4">Silakan gunakan tab di atas untuk berganti ke panel Admin atau mengajukan berkas.</p>
+        <div class="p-4 bg-blue-50 rounded-xl border border-blue-200 text-blue-900 text-xs">
+          Versi lengkap interaktif mandiri telah terintegrasi di modal ekspor aplikasi.
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    function switchRole(role) {
+      if (role === 'USER') {
+        document.getElementById('btn-role-user').className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-blue-600 text-white shadow';
+        document.getElementById('btn-role-admin').className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white';
+      } else {
+        document.getElementById('btn-role-admin').className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-amber-600 text-white shadow';
+        document.getElementById('btn-role-user').className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white';
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "name": "Simpel Adminduk",
+  "description": "Simpel Adminduk (Sistem Pelayanan Administrasi Kependudukan) - Layanan pendaftaran online KTP-el, KK, dan Akta Kelahiran Kabupaten Subang.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
